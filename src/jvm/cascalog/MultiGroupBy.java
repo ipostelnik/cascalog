@@ -76,10 +76,12 @@ public class MultiGroupBy extends SubAssembly {
         private MultiBufferContext _context;
         private int _pipeFieldsSum;
         private GroupClosure _closure;
+        private boolean _initialized;
 
         public MultiBufferExecutor(MultiBuffer buffer, int pipeFieldsSum) {
             _buffer = buffer;
             _pipeFieldsSum = pipeFieldsSum;
+            _initialized = false;
         }
 
         public void setContext(GroupClosure closure) {
@@ -92,9 +94,11 @@ public class MultiGroupBy extends SubAssembly {
         }
 
         public void operate() {
-            ((BaseOperation) _buffer).prepare(_closure.getFlowProcess(), null);
+            if(!_initialized) {
+                ((BaseOperation) _buffer).prepare(_closure.getFlowProcess(), null);
+                _initialized = true;
+            }
             _buffer.operate(_context);
-            ((BaseOperation) _buffer).cleanup(_closure.getFlowProcess(), null);
         }
     }
 

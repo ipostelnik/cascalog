@@ -34,6 +34,6 @@
   :profiles {:all {:dependencies ~shared}
              :1.2 {:dependencies [[org.clojure/clojure "1.2.1"]]}
              :1.4 {:dependencies [[org.clojure/clojure "1.4.0-alpha3"]]}
+             :provided {:dependencies [[org.apache.hadoop/hadoop-core "0.20.2-dev"]]}
              :dev {:dependencies
-                   [[org.apache.hadoop/hadoop-core "0.20.2-dev"]
-                    [midje-cascalog "0.4.0" :exclusions [org.clojure/clojure]]]}})
+                   [[midje-cascalog "0.4.0" :exclusions [org.clojure/clojure]]]}})

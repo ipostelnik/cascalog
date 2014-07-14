@@ -126,6 +126,7 @@
 (defn filter-nulls [args]
   "Inserts filter for null fields. Much faster than pure clojure version."
   (fn [previous]
+    (debug-print "filter-nulls" args)
     (Each. previous (fields args) (FilterNull.))))
 
 ;; with a :fn> defined, turns into a function
